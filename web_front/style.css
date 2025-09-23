@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    background-color: rgb(34, 34, 34);
+    overflow-x: hidden;
+}
+
+header{
+    margin: 20px;
+}
+
+header a{
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar{
+    position: fixed;
+    left: -90px;
+    width: 100px;
+    height: 100%;
+    padding-top: 80px;
+    color: white;
+    transition: left 0.3s ease;
+    box-sizing: border-box;
+}
+
+.sidebar:hover{
+    left: 0px;
+}
+
+.sidebar:hover ~ .main_screen{
+    margin-left: 100px;
+}
+
+.main_screen{
+    width: 100%;
+    margin-left: 0px;
+    transition: margin-left 0.3s ease; /* 밀리는 효과 */
+    padding: 20px;
+}
+
+.sidebar h2{
+    font-size: 15px;
+}
+
+.sidebar a{
+    display: block;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.first_line{
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: stretch;
+}
+
+.order, .map{
+    height: 300px;
+    width: auto;
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color:white ;
+}
+
+.second_line{
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.stock, .rog{
+    height: 100px;
+    width: auto;
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color:white ;
+}
+
+@media (max-width: 780px) {
+    .first_line, .second_line {
+        flex-direction: column;
+    }
+}
