@@ -1,0 +1,10 @@
+12:33:26 **** Incremental Build of configuration Debug for project WASD_Project ****
+make -j20 all 
+arm-none-eabi-size  WASD_Project.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8612	     12	   1644	  10268	   281c	WASD_Project.elf
+Finished building: default.size.stdout
+ 
+
+12:33:26 Build Finished. 0 errors, 0 warnings. (took 206ms)
+
