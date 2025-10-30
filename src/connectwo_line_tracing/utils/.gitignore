@@ -10,7 +10,7 @@ logs/
 # 환경설정 파일 제외
 .env
 config/local.json
-.myvenv
+/.myvenv
 
 # OS/IDE에서 생성하는 파일
 .DS_Store
