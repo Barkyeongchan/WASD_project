@@ -47,7 +47,7 @@ def get_line_offset(frame, show=False):
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5,5), 0)
     # 바닥/라인에 따라 바꾸자. 흰색 라인 = THRESH_BINARY, 검정 라인 = THRESH_BINARY_INV
-    _, thresh = cv2.threshold(blur, 150, 255, cv2.THRESH_BINARY_INV)
+    _, thresh = cv2.threshold(blur, 150, 255, cv2.THRESH_BINARY)
 
     # x 좌표 평균
     M = cv2.moments(thresh)
