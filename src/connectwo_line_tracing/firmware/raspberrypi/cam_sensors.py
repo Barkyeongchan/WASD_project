@@ -70,7 +70,7 @@ def get_line_offset(frame, show=False):
     return offset
 
 if __name__ == "__main__":
-    cap = open_camera_auto("/dev/video0", 640, 480, 30)
+    cap = open_camera_auto(640, 480, 30)
     try:
         while True:
             ret, frame = cap.read()
