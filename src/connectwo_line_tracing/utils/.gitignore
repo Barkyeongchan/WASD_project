@@ -1,0 +1,17 @@
+# 로그 파일 제외
+logs/
+*.log
+
+# 빌드 결과물 제외
+/build/
+*.o
+*.class
+
+# 환경설정 파일 제외
+.env
+config/local.json
+.myvenv
+
+# OS/IDE에서 생성하는 파일
+.DS_Store
+Thumbs.db
