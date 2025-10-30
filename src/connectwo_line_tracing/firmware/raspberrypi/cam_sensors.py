@@ -1,15 +1,35 @@
 #!/usr/bin/env python3
 import cv2
 import time
+import glob
 
-def open_camera(device="/dev/video0", width=640, height=480, fps=30):
-    cap = cv2.VideoCapture(device)
-    if not cap.isOpened():
-        raise RuntimeError(f"카메라를 열 수 없습니다: {device}")
+def try_open(dev, width=640, height=480, fps=30):
+    cap = cv2.VideoCapture(dev)
+    if not cap.isOpend():
+        return None
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
     cap.set(cv2.CAP_PROP_FPS, fps)
     return cap
+
+def open_camera_auto(width=640, height=480, fps=30):
+    # 우선순위: /dev/video0 -> /dev/video1 -> 나머지
+    candidates = ["/dev/video0", "/dev/video1"]
+    others = [d for d in glob.glob("/dev/video*") if d not in candidates]
+    candidates.extend(sorted(others))
+
+    print("[cam] 찾은 비디오 장치:", candidates)
+
+    for dev in candidates:
+        cap = try_open(dev, width, height, fps)
+        if cap is not None:
+            print(f"[cam] 이 장치를 사용합니다: {dev}")
+            return cap
+        else:
+            print(f"[cam] 열기 실패: {dev}")
+
+    raise RuntimeError("사용 가능한 카메라를 찾지 못했습니다.")
+
 
 def get_line_offset(frame, show=False):
     """
@@ -50,7 +70,7 @@ def get_line_offset(frame, show=False):
     return offset
 
 if __name__ == "__main__":
-    cap = open_camera("/dev/video0", 640, 480, 30)
+    cap = open_camera_auto("/dev/video0", 640, 480, 30)
     try:
         while True:
             ret, frame = cap.read()
