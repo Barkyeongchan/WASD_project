@@ -1,0 +1,71 @@
+#robot/hardware.yaml
+#connectwo_line_tracing 프로젝트 하드웨어 설정
+
+robot_name: connectwo_line_tracing
+environment: warehouse_small_scale
+system:
+  os: ubuntu_20_04
+  ros: noetic
+  role: line_tracing
+
+
+board: 
+  main_pi:
+    name: raspberrypi4
+    role: vision_and_ros_master
+    camera: true
+  motor_controller: 
+    name: stm32(connectwo)
+    role: motor
+    interface: Serial
+  sensor_controller:
+    name: arduino_mega
+    role: sensors_only
+    interface: Serial
+
+camera:
+  use: truedevice: /dev/video0
+  resolution: [640, 480]
+  framerate: 30
+  flip: false
+  processing: opencv_line_detect
+
+  motors:
+    controller: connectwo_stm32
+    driver: builtin
+    channels: 2
+    max_speed: 0.6
+    cmd_topic: /cmd_vel
+    frame_id: base_link
+  
+ir_sensors:
+  use: true
+  controller: arduino_mega
+  count: 5
+  pins: [A0, A1, A2, A3, A4]
+  order: [left2, left1, center, right1, right2]
+  report_format: csv
+  polling_rate_hz: 50
+  serial_port: /dev/ttyACM0
+  baudrate: 115200
+
+  seiral_links:
+    stm32:
+      port: /dev/ttyUSB0
+      baudrate: 115200
+      protocol: motor_cmd_v1
+    arduino:
+      port: /dev/ttyACM0baudrate: 115200
+      protocol: ir_report_v1
+  power:
+    battery_type: lipo_2s
+    voltage_nominal: 7.4
+    current_limit_a: 2.0
+
+    notes:
+    - STM32(connectwo)는 모터만! IR은 받지 않는다.
+    - IR 5개는 모두 아두이노에 물리고, 아두이노가 값을 파이로 보내면
+     파이가 ROS 노드에서 카메라값과 합쳐서 라인트레이싱 판단을 한다.
+    - 파이 OS는 ubuntu_20_04, ROS1 noetic 기준.
+    - SLAM은 사용하지 않음.
+
