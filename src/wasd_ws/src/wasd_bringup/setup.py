@@ -29,6 +29,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'teleop_keyboard = wasd_bringup.teleop_keyboard:main',
             # 지금은 실행할 노드 없음
         ],
     },
