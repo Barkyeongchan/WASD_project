@@ -1,2 +1,0 @@
-/home/wasd/WASD_project/src/wasd_ws/build/wasd_interfaces/CMakeFiles/edit_cache.dir
-/home/wasd/WASD_project/src/wasd_ws/build/wasd_interfaces/CMakeFiles/rebuild_cache.dir
