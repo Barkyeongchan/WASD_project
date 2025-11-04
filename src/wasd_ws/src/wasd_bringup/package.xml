@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <package format="3">
   <name>wasd_bringup</name>
   <version>0.0.0</version>
@@ -6,13 +7,16 @@
   <maintainer email="you@example.com">wasd</maintainer>
   <license>Apache-2.0</license>
 
+  <!-- 파이썬 패키지용 빌드 도구 -->
   <buildtool_depend>ament_python</buildtool_depend>
 
+  <!-- 런타임 의존성 -->
   <exec_depend>rclpy</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>ament_index_python</exec_depend>
 
+  <!-- 터틀봇3 관련 패키지들 -->
   <exec_depend>turtlebot3_bringup</exec_depend>
   <exec_depend>turtlebot3_node</exec_depend>
   <exec_depend>hls_lfcd_lds_driver</exec_depend>
