@@ -136,14 +136,14 @@ controller_server:
       decel_lim_x: -2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
-      vx_samples: 20
+      vx_samples: 25        # 시뮬레이션 할 속도 조합 개수 기본 값:20
       vy_samples: 0
-      vtheta_samples: 40
-      sim_time: 1.5
+      vtheta_samples: 60    # 시뮬레이션 할 속도 조합 개수 기본 값: 40
+      sim_time: 1.0         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
-      xy_goal_tolerance: 0.05
+      xy_goal_tolerance: 0.1      # 목표 지점 도착 오차 기본 값: 0.05
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: true
       stateful: true
@@ -153,8 +153,8 @@ controller_server:
       PathAlign.forward_point_distance: 0.1
       GoalAlign.scale: 24.0
       GoalAlign.forward_point_distance: 0.1
-      PathDist.scale: 32.0
-      GoalDist.scale: 24.0
+      PathDist.scale: 24.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 32.0
+      GoalDist.scale: 18.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 24.0
       RotateToGoal.scale: 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
