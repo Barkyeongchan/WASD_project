@@ -44,7 +44,7 @@ class WasdGoalProxy(Node):
 
         # ★★★ 여기 U자 경로 3포인트 좌표를 네 맵에 맞게 넣어줘 ★★★
         self.P_START = (3.29, 2.47)  # (x, y)
-        self.P_MID   = (0.96, 4.0)
+        self.P_MID   = (0.97, 3.02)
         self.P_END   = (3.13, 3.89)
 
         # ★★★ 여기 "U자 반대편 목표 영역" 범위도 네 맵에 맞게 조정 ★★★
