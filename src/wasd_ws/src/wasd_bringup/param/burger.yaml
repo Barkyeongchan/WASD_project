@@ -139,7 +139,7 @@ controller_server:
       vx_samples: 25        # 시뮬레이션 할 속도 조합 개수 기본 값:20
       vy_samples: 0
       vtheta_samples: 60    # 시뮬레이션 할 속도 조합 개수 기본 값: 40
-      sim_time: 3.0         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
+      sim_time: 1.0         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
@@ -175,7 +175,7 @@ local_costmap:
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.4       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
+        inflation_radius: 0.25       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
         cost_scaling_factor: 20.0    #큰 값일수록 벽에서 조금만 떨어져도 색깔 띠가 얇아짐. 기본값: 5.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
@@ -263,13 +263,13 @@ global_costmap:
         transform_tolerance: 0.1
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.4       # 기본값: 0.5
-        cost_scaling_factor: 10.0    # 기본값: 5.0
+        inflation_radius: 0.3       # 기본값: 0.5
+        cost_scaling_factor: 15.0    # 기본값: 5.0
       always_send_full_costmap: true
 
 map_server:
   ros__parameters:
-    yaml_filename: "map.yaml"
+    yaml_filename: "wasd_map.yaml"
 
 map_saver:
   ros__parameters:
