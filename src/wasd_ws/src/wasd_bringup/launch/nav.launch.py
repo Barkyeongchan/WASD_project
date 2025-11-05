@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Copyright 2019 Open Source Robotics Foundation, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,7 +34,7 @@ def generate_launch_description():
     map_dir = LaunchConfiguration(
         'map',
         default=os.path.join(
-            get_package_share_directory('turtlebot3_navigation2'),
+            get_package_share_directory('wasd_bringup'),
             'map',
             'map.yaml'))
 
@@ -92,4 +93,12 @@ def generate_launch_description():
             arguments=['-d', rviz_config_dir],
             parameters=[{'use_sim_time': use_sim_time}],
             output='screen'),
+
+        Node(
+            package='wasd_bringup',
+            executable='wasd_goal_proxy',
+            name='wasd_goal_proxy',
+            output='screen',
+            emulate_tty=True,
+        ),
     ])
