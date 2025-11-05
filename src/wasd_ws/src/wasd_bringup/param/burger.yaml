@@ -147,15 +147,15 @@ controller_server:
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: true
       stateful: true
-      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"] 
-      BaseObstacle.scale: 0.02
-      PathAlign.scale: 32.0                        #테스트를 위해 주석처리
-      PathAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
-      GoalAlign.scale: 24.0                        #테스트를 위해 주석처리
-      GoalAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
-      PathDist.scale: 32.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 32.0
-      GoalDist.scale: 24.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 24.0
-      RotateToGoal.scale: 32.0
+      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "PathDist", "GoalDist"]  # "GoalAlign", "PathAlign" 제거
+      BaseObstacle.scale: 1.0
+      #PathAlign.scale: 32.0                        #테스트를 위해 주석처리
+      #PathAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
+      #GoalAlign.scale: 24.0                        #테스트를 위해 주석처리
+      #GoalAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
+      PathDist.scale: 4.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 32.0
+      GoalDist.scale: 3.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 24.0
+      RotateToGoal.scale: 10.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
     enable_stamped_cmd_vel: true
@@ -175,8 +175,8 @@ local_costmap:
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.25       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
-        cost_scaling_factor: 20.0    #큰 값일수록 벽에서 조금만 떨어져도 색깔 띠가 얇아짐. 기본값: 5.0
+        inflation_radius: 0.3       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
+        cost_scaling_factor: 10.0    #큰 값일수록 벽에서 조금만 떨어져도 색깔 띠가 얇아짐. 기본값: 5.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -263,8 +263,8 @@ global_costmap:
         transform_tolerance: 0.1
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.3       # 기본값: 0.5
-        cost_scaling_factor: 15.0    # 기본값: 5.0
+        inflation_radius: 0.4       # 기본값: 0.5
+        cost_scaling_factor: 8.0    # 기본값: 5.0
       always_send_full_costmap: true
 
 map_server:
