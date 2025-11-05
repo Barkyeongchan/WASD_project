@@ -43,15 +43,15 @@ class WasdGoalProxy(Node):
         self.get_logger().info('wasd_goal_proxy node started. Click on map with "Publish Point" tool.')
 
         # ★★★ 여기 U자 경로 3포인트 좌표를 네 맵에 맞게 넣어줘 ★★★
-        self.P_START = (3.29, 2.47)  # (x, y)
-        self.P_MID   = (0.58, 2.61)
-        self.P_END   = (3.13, 3.89)
+        self.P_START = (0.23, 1.25)  # (x, y)
+        self.P_MID   = (0.98, 1.44)
+        self.P_END   = (0.00, 0.00)
 
         # ★★★ 여기 "U자 반대편 목표 영역" 범위도 네 맵에 맞게 조정 ★★★
-        self.U_DEST_X_MIN = 2.8
-        self.U_DEST_X_MAX = 3.45
-        self.U_DEST_Y_MIN = 3.5
-        self.U_DEST_Y_MAX = 4.25
+        self.U_DEST_X_MIN = -0.3
+        self.U_DEST_X_MAX = 0.3
+        self.U_DEST_Y_MIN = -0.3
+        self.U_DEST_Y_MAX = 0.3
 
     # 현재 로봇 위치 콜백
     def amcl_cb(self, msg: PoseWithCovarianceStamped):
