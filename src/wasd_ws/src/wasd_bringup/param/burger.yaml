@@ -139,7 +139,7 @@ controller_server:
       vx_samples: 25        # 시뮬레이션 할 속도 조합 개수 기본 값:20
       vy_samples: 0
       vtheta_samples: 60    # 시뮬레이션 할 속도 조합 개수 기본 값: 40
-      sim_time: 1.0         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
+      sim_time: 0.8         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
@@ -153,8 +153,8 @@ controller_server:
       #PathAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
       #GoalAlign.scale: 24.0                        #테스트를 위해 주석처리
       #GoalAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
-      PathDist.scale: 24.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 32.0
-      GoalDist.scale: 18.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 24.0
+      PathDist.scale: 18.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 32.0
+      GoalDist.scale: 12.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 24.0
       RotateToGoal.scale: 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
