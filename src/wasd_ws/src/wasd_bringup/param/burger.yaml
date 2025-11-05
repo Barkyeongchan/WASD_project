@@ -171,12 +171,12 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.09           #로봇 자체의 반지름(m)
+      robot_radius: 0.08           #로봇 자체의 반지름(m)
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.25       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
-        cost_scaling_factor: 10.0    #큰 값일수록 벽에서 조금만 떨어져도 색깔 띠가 얇아짐. 기본값: 5.0
+        inflation_radius: 0.20       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
+        cost_scaling_factor: 15.0    #큰 값일수록 벽에서 조금만 떨어져도 색깔 띠가 얇아짐. 기본값: 5.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -263,8 +263,8 @@ global_costmap:
         transform_tolerance: 0.1
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.35       # 기본값: 0.5
-        cost_scaling_factor: 10.0    # 기본값: 5.0
+        inflation_radius: 0.25       # 기본값: 0.5
+        cost_scaling_factor: 15.0    # 기본값: 5.0
       always_send_full_costmap: true
 
 map_server:
@@ -345,9 +345,9 @@ collision_monitor:
       radius: 0.1
       action_type: "stop"
       min_points: 4
-      visualize: false        # true -> false
+      visualize: true        
       polygon_pub_topic: "polygon_stop"
-      enabled: true
+      enabled: false         # true -> false
     PolygonSlow:
       type: "polygon"
       points: "[[0.1, 0.1], [0.1, -0.1], [-0.1, -0.1], [-0.1, 0.1]]"
