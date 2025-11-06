@@ -13,26 +13,26 @@ from launch_ros.actions import Node
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
-    # ✅ 1) 맵 파일: 새로 만든 wasd_map_clean.yaml을 기본값으로 사용
+    # ✅ 네 맵 파일 절대 경로
     map_file = LaunchConfiguration(
         'map',
         default='/home/wasd/WASD_project/src/wasd_ws/wasd_map_clean.yaml'
     )
 
-    # ✅ 2) 파라미터 파일: 소스 경로의 burger.yaml을 직접 사용
+    # ✅ 네비 파라미터 파일 절대 경로
     params_file = LaunchConfiguration(
         'params_file',
         default='/home/wasd/WASD_project/src/wasd_ws/src/wasd_bringup/param/burger.yaml'
     )
 
-    # nav2_bringup 의 bringup_launch.py
+    # nav2_bringup의 bringup_launch.py 그대로 사용 (이게 costmap 노드들 자동 실행함)
     nav2_launch_file = os.path.join(
         get_package_share_directory('nav2_bringup'),
         'launch',
         'bringup_launch.py'
     )
 
-    # RViz 설정은 기존 turtlebot3 네비 rviz 사용
+    # RViz 설정 파일은 그대로 turtlebot3에서 가져와도 OK
     rviz_config_dir = os.path.join(
         get_package_share_directory('turtlebot3_navigation2'),
         'rviz',
@@ -55,7 +55,7 @@ def generate_launch_description():
             default_value='false',
             description='Use simulation (Gazebo) clock if true'),
 
-        # ✅ 여기서 우리가 지정한 map / params_file을 nav2_bringup에 넘겨줌
+        # ✅ bringup_launch.py에 우리가 지정한 파일 경로를 그대로 넘김
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(nav2_launch_file),
             launch_arguments={
@@ -65,7 +65,7 @@ def generate_launch_description():
             }.items(),
         ),
 
-        # RViz2 실행
+        # RViz 실행
         Node(
             package='rviz2',
             executable='rviz2',
