@@ -171,11 +171,11 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.1           #로봇 자체의 반지름(m)
+      robot_radius: 0.13           #로봇 자체의 반지름(m)
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.3       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
+        inflation_radius: 0.4       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
         cost_scaling_factor: 10.0    #큰 값일수록 벽에서 조금만 떨어져도 색깔 띠가 얇아짐. 기본값: 5.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
