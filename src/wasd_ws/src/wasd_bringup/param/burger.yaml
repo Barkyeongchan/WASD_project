@@ -139,7 +139,7 @@ controller_server:
       vx_samples: 25        # 시뮬레이션 할 속도 조합 개수 기본 값:20
       vy_samples: 0
       vtheta_samples: 60    # 시뮬레이션 할 속도 조합 개수 기본 값: 40
-      sim_time: 1.0         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
+      sim_time: 1.5         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
@@ -148,7 +148,7 @@ controller_server:
       short_circuit_trajectory_evaluation: true
       stateful: true
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "PathDist", "GoalDist"]  # "GoalAlign", "PathAlign" 제거
-      BaseObstacle.scale: 1.0
+      BaseObstacle.scale: 1.2
       #PathAlign.scale: 32.0                        #테스트를 위해 주석처리
       #PathAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
       #GoalAlign.scale: 24.0                        #테스트를 위해 주석처리
