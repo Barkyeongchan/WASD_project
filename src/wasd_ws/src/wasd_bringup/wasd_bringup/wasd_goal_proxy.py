@@ -89,6 +89,12 @@ class WasdGoalProxy(Node):
             self.send_nav_to_pose(final_pose)
 
     def is_u_turn_destination(self, x, y):
+        in_zone = (self.U_DEST_X_MIN <= x <= self.U_DEST_X_MAX and self.U_DEST_Y_MIN <= y <= self.U_DEST_Y_MAX)
+        self.get_logger().info(
+            f'is_u_turn_destination({x:.2f}, {y:.2f}) = {in_zone} '
+            f'for zone x[{self.U_DEST_X_MIN}, {self.U_DEST_X_MAX}], '
+            f'y[{self.U_DEST_Y_MIN}, {self.U_DEST_Y_MAX}]'
+        )
         return (self.U_DEST_X_MIN <= x <= self.U_DEST_X_MAX
                 and self.U_DEST_Y_MIN <= y <= self.U_DEST_Y_MAX)
 
