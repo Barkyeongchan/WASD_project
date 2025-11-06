@@ -1,76 +1,52 @@
 #!/usr/bin/env python3
-# Copyright 2019 Open Source Robotics Foundation, Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-# Author: Darby Lim
 
 import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
-ROS_DISTRO = os.environ.get('ROS_DISTRO')
-
-
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    map_dir = LaunchConfiguration(
+
+    # ✅ 1) 맵 파일: 네가 말한 절대 경로 사용
+    map_file = LaunchConfiguration(
         'map',
-        default=os.path.join(
-            get_package_share_directory('wasd_bringup'),
-            'map',
-            'map.yaml'))
+        default='/home/wasd/WASD_project/src/wasd_ws/wasd_map.yaml'   # <- 여기 이름만 실제 이름으로
+    )
 
-    param_file_name = TURTLEBOT3_MODEL + '.yaml'
-    if ROS_DISTRO == 'humble':
-        param_dir = LaunchConfiguration(
-            'params_file',
-            default=os.path.join(
-                get_package_share_directory('turtlebot3_navigation2'),
-                'param',
-                ROS_DISTRO,
-                param_file_name))
-    else:
-        param_dir = LaunchConfiguration(
-            'params_file',
-            default=os.path.join(
-                get_package_share_directory('turtlebot3_navigation2'),
-                'param',
-                param_file_name))
+    # ✅ 2) 네비 파라미터 파일: wasd_bringup/param/burger.yaml 사용
+    #    (install/share/wasd_bringup/param/burger.yaml 을 가정)
+    wasd_share_dir = get_package_share_directory('wasd_bringup')
+    params_file = LaunchConfiguration(
+        'params_file',
+        default=os.path.join(wasd_share_dir, 'param', 'burger.yaml')
+    )
 
-    nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
+    nav2_launch_file = os.path.join(
+        get_package_share_directory('nav2_bringup'),
+        'launch',
+        'bringup_launch.py'
+    )
 
     rviz_config_dir = os.path.join(
         get_package_share_directory('turtlebot3_navigation2'),
         'rviz',
-        'tb3_navigation2.rviz')
+        'tb3_navigation2.rviz'
+    )
 
     return LaunchDescription([
         DeclareLaunchArgument(
             'map',
-            default_value=map_dir,
+            default_value=map_file,
             description='Full path to map file to load'),
 
         DeclareLaunchArgument(
             'params_file',
-            default_value=param_dir,
+            default_value=params_file,
             description='Full path to param file to load'),
 
         DeclareLaunchArgument(
@@ -78,12 +54,14 @@ def generate_launch_description():
             default_value='false',
             description='Use simulation (Gazebo) clock if true'),
 
+        # ✅ nav2_bringup 에 우리가 지정한 map / params_file 넘겨줌
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([nav2_launch_file_dir, '/bringup_launch.py']),
+            PythonLaunchDescriptionSource(nav2_launch_file),
             launch_arguments={
-                'map': map_dir,
+                'map': map_file,
                 'use_sim_time': use_sim_time,
-                'params_file': param_dir}.items(),
+                'params_file': params_file,
+            }.items(),
         ),
 
         Node(
