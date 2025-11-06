@@ -43,9 +43,9 @@ class WasdGoalProxy(Node):
         self.get_logger().info('wasd_goal_proxy node started. Click on map with "Publish Point" tool.')
 
         # ★★★ 여기 U자 경로 3포인트 좌표를 네 맵에 맞게 넣어줘 ★★★
-        self.P_START = (0.23, 1.25)  # (x, y)
-        self.P_MID   = (0.98, 1.44)
-        self.P_END   = (0.00, 0.00)
+        self.P_START = (-0.07, 1.55)  # (x, y)
+        self.P_MID   = (2.52, 1.45)
+        self.P_END   = (-0.01, -0.01)
 
         # ★★★ 여기 "U자 반대편 목표 영역" 범위도 네 맵에 맞게 조정 ★★★
         self.U_DEST_X_MIN = -0.3

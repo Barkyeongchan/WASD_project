@@ -136,25 +136,25 @@ controller_server:
       decel_lim_x: -2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
-      vx_samples: 25        # 시뮬레이션 할 속도 조합 개수 기본 값:20
+      vx_samples: 25        # default 20
       vy_samples: 0
-      vtheta_samples: 60    # 시뮬레이션 할 속도 조합 개수 기본 값: 40
-      sim_time: 1.0         # 로봇이 trajectory를 미리 시뮬레이션 하는 값. 기본 값: 1.5
+      vtheta_samples: 60    # default 40
+      sim_time: 1.0         # default 1.5
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
-      xy_goal_tolerance: 0.1      # 목표 지점 도착 오차 기본 값: 0.05
+      xy_goal_tolerance: 0.1      # default 0.05
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: true
       stateful: true
-      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]  #  제거
+      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]  
       BaseObstacle.scale: 4.0
-      PathAlign.scale: 6.0                        #테스트를 위해 주석처리
-      PathAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
-      GoalAlign.scale: 4.0                        #테스트를 위해 주석처리
-      GoalAlign.forward_point_distance: 0.1        #테스트를 위해 주석처리
-      PathDist.scale: 2.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 32.0
-      GoalDist.scale: 2.0      # 경로를 얼마나 고집 할 지 결정하는 값. 기본 값 24.0
+      PathAlign.scale: 6.0                        
+      PathAlign.forward_point_distance: 0.1      
+      GoalAlign.scale: 4.0                       
+      GoalAlign.forward_point_distance: 0.1        
+      PathDist.scale: 2.0      # default 32.0
+      GoalDist.scale: 2.0      # default 24.0
       RotateToGoal.scale: 8.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
@@ -171,12 +171,12 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.1           #로봇 자체의 반지름(m)
+      robot_radius: 0.1           #(m)
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.35       #벽과의 안전거리, 숫자가 낮을 수록 안전거리가 짧아짐. 기본값: 0.5
-        cost_scaling_factor: 7.0    #큰 값일수록 벽에서 조금만 떨어져도 색깔 띠가 얇아짐. 기본값: 5.0
+        inflation_radius: 0.35       # default 0.5
+        cost_scaling_factor: 7.0    # default 5.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -263,8 +263,8 @@ global_costmap:
         transform_tolerance: 0.1
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.45       # 기본값: 0.5
-        cost_scaling_factor: 5.0    # 기본값: 5.0
+        inflation_radius: 0.45       # default 0.5
+        cost_scaling_factor: 5.0    # default 5.0
       always_send_full_costmap: true
 
 map_server:
