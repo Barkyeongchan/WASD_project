@@ -93,7 +93,9 @@ def generate_launch_description():
             arguments=['-d', rviz_config_dir],
             parameters=[{'use_sim_time': use_sim_time}],
             output='screen'),
+    ])
 
+'''
         Node(
             package='wasd_bringup',
             executable='wasd_goal_proxy',
@@ -101,4 +103,4 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
         ),
-    ])
+        '''

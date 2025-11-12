@@ -65,13 +65,13 @@ class WasdBridge(Node):
         # START <-> RACK_A 이동일 때는 항상 mid_a를 경유하도록 설계
         if cmd == 'RACK_A':
             # START에서 RACK_A로 가는 명령이라고 가정
-            mid_pose = self.make_pose_from_key('mid_a')
+            mid_pose = self.make_pose_from_key('MID_A')
             self.get_logger().info('Using mid_a -> RACK_A via NavigateThroughPoses')
             self.send_nav_through_poses([mid_pose, goal_pose])
 
         elif cmd == 'START':
             # RACK_A에서 START로 가는 명령이라고 가정
-            mid_pose = self.make_pose_from_key('mid_a')
+            mid_pose = self.make_pose_from_key('MID_A')
             self.get_logger().info('Using mid_a -> START via NavigateThroughPoses')
             self.send_nav_through_poses([mid_pose, goal_pose])
 

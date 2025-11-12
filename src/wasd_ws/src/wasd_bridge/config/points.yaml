@@ -1,19 +1,19 @@
-start:
+START:
   x: 0.04563
   y: 0.03022
-  yaw_deg: -0.99
+  yaw_deg: -5.99
 
-rack_a:
+RACK_A:
   x: -0.12488
   y: 1.62557
   yaw_deg: -13.14
 
-rack_b:
+RACK_B:
   x: 2.78324
   y: 4.07872
-  yaw_deg: -68.21
+  yaw_deg: -108.21
 
-mid_a:
-  x: 2.38817
-  y: 1.71919
-  yaw_deg: -110.51
+MID_A:
+  x: 2.47639
+  y: 0.75845
+  yaw_deg: 100.00
