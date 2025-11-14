@@ -54,17 +54,32 @@ class WasdBridge(Node):
         cmd = msg.data.strip().upper()
         self.get_logger().info(f'Received UI command: {cmd}')
 
-        if cmd not in ['START', 'RACK_A', 'RACK_B', 'WAIT']:
+        if cmd not in ['START', 'RACK_A', 'RACK_B']:
             self.get_logger().warn(f'Unknown command: {cmd}')
             return
 
         # 목적지 pose 만들기
         goal_pose = self.make_pose_from_key(cmd)
 
-        # 바로 Nav2로 목표 전송
-        self.get_logger().info(f'Navigating directly to: {cmd}')
-        self.send_nav_to_pose(goal_pose)
-            
+        # --------- U코너 로직 (위치 사용 X 버전) ---------
+        # START <-> RACK_A 이동일 때는 항상 mid_a를 경유하도록 설계
+        if cmd == 'RACK_A':
+            # START에서 RACK_A로 가는 명령이라고 가정
+            mid_pose = self.make_pose_from_key('MID_A')
+            self.get_logger().info('Using mid_a -> RACK_A via NavigateThroughPoses')
+            self.send_nav_through_poses([mid_pose, goal_pose])
+
+        elif cmd == 'START':
+            # RACK_A에서 START로 가는 명령이라고 가정
+            mid_pose = self.make_pose_from_key('MID_A')
+            self.get_logger().info('Using mid_a -> START via NavigateThroughPoses')
+            self.send_nav_through_poses([mid_pose, goal_pose])
+
+        else:
+            # 그 외에는 그냥 바로 NavigateToPose (예: RACK_B 등)
+            self.get_logger().info('Using direct NavigateToPose')
+            self.send_nav_to_pose(goal_pose)
+
     def make_pose_from_key(self, key):
         p = self.points[key]
         x = p['x']
