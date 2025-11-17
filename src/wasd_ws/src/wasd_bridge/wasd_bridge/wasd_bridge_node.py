@@ -60,9 +60,6 @@ class WasdBridge(Node):
         self.get_logger().info(f'Loaded points from: {points_path}')
         self.get_logger().info('wasd_bridge node started. Waiting for /wasd_ui_command...')
 
-        # 시작 상태 브로드캐스트
-        self.update_state("IDLE")
-
     # UI -> 명령 수신 콜백
     def ui_command_cb(self, msg: String):
         cmd = msg.data.strip().upper()
