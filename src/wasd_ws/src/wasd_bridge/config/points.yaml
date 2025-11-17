@@ -6,14 +6,14 @@ START:
 RACK_A:
   x: -0.004017
   y: 3.953716
-  yaw_deg: -113.4
+  yaw_deg: -95.4
 
 RACK_B:
   x: 2.78324
   y: 4.07872
-  yaw_deg: -108.21
+  yaw_deg: -105.21
 
 WAIT:
   x: 2.72313
   y: 1.00833
-  yaw_deg: 157.57
+  yaw_deg: 160.57
