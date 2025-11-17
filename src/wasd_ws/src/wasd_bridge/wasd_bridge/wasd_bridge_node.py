@@ -112,7 +112,6 @@ class WasdBridge(Node):
 
         msg = String()
         msg.data = f'ARRIVED:{target_name}'
-        self.state_pub.publish(msg)
         self.get_logger().info(f'[NAV] published: {msg.data}')
 
     # Nav2 액션 호출 부분
