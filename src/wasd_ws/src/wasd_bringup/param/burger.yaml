@@ -38,14 +38,14 @@ amcl:
     z_short: 0.05
     scan_topic: scan
     map_topic: map
-    set_initial_pose: false
+    set_initial_pose: true
     always_reset_initial_pose: false
     first_map_only: false
     initial_pose:
-      x: 0.0
-      y: 0.0
+      x: 0.50000
+      y: 0.07122
       z: 0.0
-      yaw: 0.0
+      yaw: 0.01
 
 bt_navigator:
   ros__parameters:
@@ -113,10 +113,10 @@ controller_server:
       required_movement_radius: 0.05
       movement_time_allowance: 8.0
     goal_checker:
-      stateful: true
+      stateful: false
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.15
-      yaw_goal_tolerance: 0.25
+      xy_goal_tolerance: 0.35
+      yaw_goal_tolerance: 0.3
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: true
@@ -139,7 +139,7 @@ controller_server:
       vx_samples: 25        # default 20
       vy_samples: 0
       vtheta_samples: 50    # default 40
-      sim_time: 2.0         # default 1.5
+      sim_time: 1.0         # default 1.5
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
@@ -147,15 +147,15 @@ controller_server:
       trans_stopped_velocity: 0.05
       short_circuit_trajectory_evaluation: true
       stateful: true
-      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "PathDist", "GoalDist"]  # "GoalAlign", "PathAlign",
+      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]  
       BaseObstacle.scale: 0.8
-      #PathAlign.scale: 6.0                        
-      #PathAlign.forward_point_distance: 0.1      
-      #GoalAlign.scale: 4.0                       
-      #GoalAlign.forward_point_distance: 0.1        
-      PathDist.scale: 14.0      # default 32.0
+      PathAlign.scale: 16.0                        
+      PathAlign.forward_point_distance: 0.1      
+      GoalAlign.scale: 4.0                       
+      GoalAlign.forward_point_distance: 0.1        
+      PathDist.scale: 48.0      # default 32.0
       GoalDist.scale: 8.0      # default 24.0
-      RotateToGoal.scale: 10.0
+      RotateToGoal.scale: 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
     enable_stamped_cmd_vel: true
@@ -174,7 +174,7 @@ local_costmap:
       resolution: 0.05
       #footprint: [[0.135, 0.09], [0.135, -0.09], [-0.135, -0.09], [-0.135, 0.09]]
       robot_radius: 0.13           #(m)
-      plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
+      plugins: ["obstacle_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         inflation_radius: 0.25       # default 0.5
@@ -226,7 +226,7 @@ global_costmap:
       robot_radius: 0.13
       resolution: 0.05
       track_unknown_space: true
-      plugins: ["static_layer", "obstacle_layer", "voxel_layer", "inflation_layer"]
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -289,7 +289,7 @@ planner_server:
     GridBased:
       plugin: "nav2_navfn_planner/NavfnPlanner"
       tolerance: 0.5
-      use_astar: false
+      use_astar: true
       allow_unknown: true
 
 behavior_server:
